@@ -18,49 +18,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        try {
-//            Intent intent = getIntent();
-//            Bundle extras = intent.getExtras();
-//            String music = extras.getString("musicboolean");
-//            String sound = extras.getString(OptionsActivity.soundboolean + "");
-//            String turn = extras.getString(OptionsActivity.turnboolean + "");
-//            musicboolean = Boolean.getBoolean(music);
-//            soundboolean = Boolean.getBoolean(sound);
-//            turnboolean = Boolean.getBoolean(turn);
-//        }catch(Throwable t){
-//
-//        }
-        System.out.println("Main");
-        System.out.println(musicboolean);
-        System.out.println(soundboolean);
-        System.out.println(turnboolean);
-//        Bundle bund1 = new Bundle();
-//        final Intent intent1 = new Intent(this, GameActivity.class);
-//        bund1.putString("musicboolean", musicboolean+"");
-//        bund1.putString(soundboolean+"",soundboolean+"");
-//        bund1.putString(turnboolean+"",turnboolean+"");
-//        intent1.putExtras(bund1);
-//        Bundle bund2 = new Bundle();
-//        final Intent intent2 = new Intent(this, MultiplayerActivity.class);
-//        bund2.putString("musicboolean", musicboolean+"");
-//        bund2.putString(soundboolean+"",soundboolean+"");
-//        bund2.putString(turnboolean+"",turnboolean+"");
-//        intent2.putExtras(bund2);
-//        Bundle bund3 = new Bundle();
-//        final Intent intent3 = new Intent(this, OptionsActivity.class);
-//        bund3.putString("musicboolean", musicboolean+"");
-//        bund3.putString(soundboolean+"",soundboolean+"");
-//        bund3.putString(turnboolean+"",turnboolean+"");
-//        intent3.putExtras(bund3);
-//        Bundle bund4 = new Bundle();
-//        final Intent intent4 = new Intent(this, StatisticsActivity.class);
-//        bund4.putString("musicboolean", musicboolean+"");
-//        bund4.putString(soundboolean+"",soundboolean+"");
-//        bund4.putString(turnboolean+"",turnboolean+"");
-//        intent4.putExtras(bund4);
-
-
-
 
         Button btn = (Button)findViewById(R.id.main_playgame_button);
         Button btn1 = (Button) findViewById(R.id.main_multiplayer_button);

@@ -23,23 +23,6 @@ public class GameActivity extends AppCompatActivity {
                 startActivity(new Intent(GameActivity.this, MainActivity.class));
             }
         });
-        try {
-            Intent intent = getIntent();
-            Bundle extras = intent.getExtras();
-            String music = extras.getString("musicboolean");
-            String sound = extras.getString(OptionsActivity.soundboolean + "");
-            String turn = extras.getString(OptionsActivity.turnboolean + "");
-            musicboolean = Boolean.getBoolean(music);
-            soundboolean = Boolean.getBoolean(sound);
-            turnboolean = Boolean.getBoolean(turn);
-        }catch(Throwable t){
-
-        }
-        System.out.println("Game");
-        System.out.println(musicboolean);
-        System.out.println(soundboolean);
-        System.out.println(turnboolean);
-
 
     }
 
@@ -55,8 +38,6 @@ public class GameActivity extends AppCompatActivity {
             mediaPlayer.start();
         }
 
-
-
     }
 
     @Override
@@ -66,7 +47,6 @@ public class GameActivity extends AppCompatActivity {
             mediaPlayer.stop();
             mediaPlayer.release();
         }
-
 
     }
 

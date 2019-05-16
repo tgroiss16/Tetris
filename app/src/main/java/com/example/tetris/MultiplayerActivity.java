@@ -25,22 +25,6 @@ public class MultiplayerActivity extends AppCompatActivity {
             }
         });
 
-        try {
-            Intent intent = getIntent();
-            Bundle extras = intent.getExtras();
-            String music = extras.getString("musicboolean");
-            String sound = extras.getString(OptionsActivity.soundboolean + "");
-            String turn = extras.getString(OptionsActivity.turnboolean + "");
-            musicboolean = Boolean.getBoolean(music);
-            soundboolean = Boolean.getBoolean(sound);
-            turnboolean = Boolean.getBoolean(turn);
-        }catch(Throwable t){
-
-        }
-        System.out.println("Multiplayer");
-        System.out.println(musicboolean);
-        System.out.println(soundboolean);
-        System.out.println(turnboolean);
 
     }
 

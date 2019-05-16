@@ -69,14 +69,6 @@ public class OptionsActivity extends AppCompatActivity {
 
 
 
-//        Bundle bund = new Bundle();
-//        final Intent intent = new Intent(this, MainActivity.class);
-//        bund.putString("musicboolean", musicboolean+"");
-//        System.out.println("Musicboolean bundle:"+musicboolean);
-//        bund.putString(soundboolean+"",soundboolean+"");
-//        bund.putString(turnboolean+"",turnboolean+"");
-//        intent.putExtras(bund);
-
         Button back = (Button)findViewById(R.id.options_back_button);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
