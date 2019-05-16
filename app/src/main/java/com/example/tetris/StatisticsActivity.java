@@ -1,12 +1,17 @@
 package com.example.tetris;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
 public class StatisticsActivity extends AppCompatActivity {
+    MediaPlayer mediaPlayer;
+    public boolean musicboolean = OptionsActivity.musicboolean;
+    public boolean soundboolean = OptionsActivity.soundboolean;
+    public boolean turnboolean = OptionsActivity.turnboolean;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,8 +25,48 @@ public class StatisticsActivity extends AppCompatActivity {
         });
 
 
+//        try {
+//            Intent intent = getIntent();
+//            Bundle extras = intent.getExtras();
+//            String music = extras.getString("musicboolean");
+//            String sound = extras.getString(OptionsActivity.soundboolean + "");
+//            String turn = extras.getString(OptionsActivity.turnboolean + "");
+//            System.out.println(music);
+//            musicboolean = Boolean.getBoolean(music);
+//            soundboolean = Boolean.getBoolean(sound);
+//            turnboolean = Boolean.getBoolean(turn);
+//        }catch(Throwable t){
+//
+//        }
+        System.out.println("Statistics");
+        System.out.println(musicboolean);
+        System.out.println(soundboolean);
+        System.out.println(turnboolean);
 
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        musicboolean = OptionsActivity.musicboolean;
+        soundboolean = OptionsActivity.soundboolean;
+        turnboolean = OptionsActivity.turnboolean;
+        if(!musicboolean){
+            mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.tetristheme);
+            mediaPlayer.start();
+        }
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(!musicboolean) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+        }
 
     }
 }
