@@ -70,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
         if(mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
-            mediaPlayer.release();
         }
     }
 }

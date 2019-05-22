@@ -42,32 +42,7 @@ public class GameActivity extends AppCompatActivity {
         super.onStop();
         if(mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
-            mediaPlayer.release();
         }
     }
-
-
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        musicboolean = OptionsActivity.musicboolean;
-//        soundboolean = OptionsActivity.soundboolean;
-//        turnboolean = OptionsActivity.turnboolean;
-//        if(!musicboolean){
-//            mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.tetristheme);
-//            mediaPlayer.start();
-//        }
-//
-//    }
-//
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        if(!musicboolean) {
-//            mediaPlayer.stop();
-//            mediaPlayer.release();
-//        }
-//
-//    }
 
 }

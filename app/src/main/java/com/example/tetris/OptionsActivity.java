@@ -33,10 +33,6 @@ public class OptionsActivity extends AppCompatActivity {
         musicbutton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(mediaPlayer.isPlaying()) {
-                    mediaPlayer.stop();
-                    mediaPlayer.release();
-                }
                 setMusicboolean(isChecked);
             }
         });
@@ -94,7 +90,6 @@ public class OptionsActivity extends AppCompatActivity {
         super.onStop();
         if(mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
-            mediaPlayer.release();
         }
     }
 
