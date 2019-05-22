@@ -33,13 +33,11 @@ public class OptionsActivity extends AppCompatActivity {
         musicbutton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(!musicboolean) {
+                if(mediaPlayer.isPlaying()) {
                     mediaPlayer.stop();
-                    curchanged = true;
+                    mediaPlayer.release();
                 }
                 setMusicboolean(isChecked);
-
-                System.out.println("Listener"+isChecked);
             }
         });
 
@@ -82,23 +80,22 @@ public class OptionsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(!musicboolean){
-            mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.tetristheme);
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.tetristheme);
+        if (!mediaPlayer.isPlaying() && !musicboolean)
+        {
             mediaPlayer.start();
-
+            mediaPlayer.setLooping(true);
         }
-
     }
+
 
     @Override
     protected void onStop() {
         super.onStop();
-        if(!musicboolean&&curchanged) {
+        if(mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
             mediaPlayer.release();
         }
-        curchanged = false;
-
     }
 
     public boolean isMusicboolean() {
