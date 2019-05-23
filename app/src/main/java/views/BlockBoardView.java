@@ -9,7 +9,6 @@ import android.view.SurfaceView;
 
 import com.example.tetris.GameActivity;
 
-import com.example.tetris.GameActivity;
 
 
 public class BlockBoardView extends SurfaceView implements Callback
