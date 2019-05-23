@@ -19,7 +19,14 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-
+        public void startGame(BlockBoardView caller)
+        {
+            mainThread = new WorkThread(this, caller.getHolder());
+            mainThread.setFirstTime(false);
+            game.setRunning(true);
+            mainThread.setRunning(true);
+            mainThread.start();
+        }
 
 
     }
