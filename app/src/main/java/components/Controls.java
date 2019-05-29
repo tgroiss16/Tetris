@@ -193,11 +193,7 @@ public class Controls extends Component
         }
     }
 
-    public void leftButtonReleased()
-    {
-        clearLeftMove = true;
-        cancelVibration();
-    }
+
 
     public void leftButtonPressed()
     {
@@ -206,23 +202,14 @@ public class Controls extends Component
         leftMove = true;
         rightMove = false;
         host.game.setNextPlayerMoveTime(host.game.getTime());
-        host.sound.buttonSound();
-    }
 
-    public void rightButtonReleased()
-    {
-        clearRightMove = true;
-        cancelVibration();
     }
 
     public void rightButtonPressed()
     {
         host.game.action();
-        clearRightMove = false;
         rightMove = true;
-        leftMove = false;
         host.game.setNextPlayerMoveTime(host.game.getTime());
-        host.sound.buttonSound();
     }
 
     public void cycle()
@@ -253,38 +240,19 @@ public class Controls extends Component
 
         // Left move
         if (leftMove) {
-            continuousLeftMove = true;
             leftMove = false;
 
             if (active.moveLeft(board)) {
                 // Successful move
-                vibrateShort(); // It should vibrate at every tick
-                host.display.invalidatePhantom();
                 host.game.setNextPlayerMoveTime(host.game.getNextPlayerMoveTime() + initialHorizontalIntervalFactor * host.game.getMoveInterval());
+                leftMove = false;
             } else {
                 // Failed move
                 vibrateWall();
                 host.game.setNextPlayerMoveTime(gameTime);
+                leftMove = false;
             }
 
-        } else if (continuousLeftMove) {
-            if (gameTime >= host.game.getNextPlayerMoveTime()) {
-                if (active.moveLeft(board)) {
-                    // Successful move
-                    vibrateShort(); // It should vibrate at every tick
-                    host.display.invalidatePhantom();
-                    host.game.setNextPlayerMoveTime(host.game.getNextPlayerMoveTime() + host.game.getMoveInterval());
-                } else {
-                    // failed move
-                    vibrateWall();
-                    host.game.setNextPlayerMoveTime(gameTime);
-                }
-            }
-
-            if (clearLeftMove) {
-                continuousLeftMove = false;
-                clearLeftMove = false;
-            }
         }
 
         // Right Move
@@ -292,34 +260,15 @@ public class Controls extends Component
             continuousRightMove = true;
             rightMove = false;
             if (active.moveRight(board)) {
-                // Successful move
-                vibrateShort(); // It should vibrate at every tick
-                host.display.invalidatePhantom();
+
+
+                rightMove = false;
                 host.game.setNextPlayerMoveTime(host.game.getNextPlayerMoveTime() + initialHorizontalIntervalFactor * host.game.getMoveInterval());
             } else {
-                // Failed move
-                vibrateWall();
+                rightMove = false;
                 host.game.setNextPlayerMoveTime(gameTime); // First interval is doubled
             }
 
-        } else if (continuousRightMove) {
-            if (gameTime >= host.game.getNextPlayerMoveTime()) {
-                if (active.moveRight(board)) {
-                    // Successful move
-                    vibrateShort(); // It should vibrate at every tick
-                    host.display.invalidatePhantom();
-                    host.game.setNextPlayerMoveTime(host.game.getNextPlayerMoveTime() + host.game.getMoveInterval());
-                } else {
-                    // Failed move
-                    vibrateWall();
-                    host.game.setNextPlayerMoveTime(gameTime);
-                }
-            }
-
-            if (clearRightMove) {
-                continuousRightMove = false;
-                clearRightMove = false;
-            }
         }
 
         // Hard Drop

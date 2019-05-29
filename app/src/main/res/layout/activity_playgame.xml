@@ -6,39 +6,39 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/main_playgame_button"
+        android:id="@+id/softdrop"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="20dp"
+        android:foreground="@android:color/holo_red_dark"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/arrow_down_float" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/button2"
+        android:id="@+id/left"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="20dp"
+        android:foreground="@color/square_cyan"
         android:rotation="90"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/main_playgame_button"
-        app:srcCompat="@android:drawable/arrow_down_float" />
+        app:layout_constraintStart_toEndOf="@+id/softdrop" />
 
     <ImageView
-        android:id="@+id/main_multiplayer_button"
+        android:id="@+id/right"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="20dp"
+        android:foreground="@color/colorAccent"
         android:rotation="-90"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button2"
-        app:srcCompat="@android:drawable/arrow_down_float" />
+        app:layout_constraintStart_toEndOf="@+id/left" />
 
-    <ImageView
-        android:id="@+id/main_statistics_button"
+    <ImageButton
+        android:id="@+id/rotate"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginStart="8dp"
@@ -46,8 +46,7 @@
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/main_multiplayer_button"
-        app:srcCompat="@android:drawable/ic_menu_rotate" />
+        app:layout_constraintStart_toEndOf="@+id/right" />
 
     <Button
         android:id="@+id/playgame_pause_button"

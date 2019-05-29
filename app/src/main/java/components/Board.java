@@ -54,7 +54,7 @@ public class Board extends Component {
         }
 
         if (valid) {
-            canvas.drawBitmap(blockBitmap, x, y, null);
+            canvas.drawBitmap(blockBitmap, x+150, y, null);
 
             return;
         }

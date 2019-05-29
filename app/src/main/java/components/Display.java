@@ -8,8 +8,7 @@ import android.graphics.Rect;
 import android.preference.PreferenceManager;
 import com.example.tetris.GameActivity;
 import com.example.tetris.R;
-import engine.Row;
-import pieces.Piece;
+
 
 public class Display extends Component
 {
@@ -148,17 +147,8 @@ public class Display extends Component
 
         drawActive(columnOffset, rowOffset, squaresize, canvas);
 
-        if (PreferenceManager.getDefaultSharedPreferences(host).getBoolean("pref_phantom", false)) {
-            drawPhantom(columnOffset, rowOffset, squaresize, canvas);
-        }
-
         drawGrid(columnOffset, rowOffset, gridColumnBorder, gridRowBorder, canvas);
 
-
-
-        if (PreferenceManager.getDefaultSharedPreferences(host).getBoolean("pref_popup", true)) {
-            drawPopupText(canvas);
-        }
     }
 
     private void drawGrid(int x, int y, int xBorder, int yBorder, Canvas canvas)
@@ -184,66 +174,13 @@ public class Display extends Component
 
     private void drawActive(int spaltenOffset, int zeilenOffset, int spaltenAbstand, Canvas canvas)
     {
-        host.game.getActivePiece().drawOnBoard(spaltenOffset, zeilenOffset, spaltenAbstand, canvas);
-    }
-
-    private void drawPhantom(int spaltenOffset, int zeilenOffset, int spaltenAbstand, Canvas canvas)
-    {
-        Piece active = host.game.getActivePiece();
-        int y = active.getY();
-        int x = active.getX();
-        active.setPhantom(true);
-
-        if (dropPhantom) {
-            int backup_currentRowIndex = host.game.getBoard().getCurrentRowIndex();
-            Row backup_currentRow = host.game.getBoard().getCurrentRow();
-            int cnt = y + 1;
-
-            while (active.setPositionSimpleCollision(x, cnt, host.game.getBoard())) {
-                cnt++;
-            }
-
-            host.game.getBoard().setCurrentRowIndex(backup_currentRowIndex);
-            host.game.getBoard().setCurrentRow(backup_currentRow);
-        } else {
-            active.setPositionSimple(x, prevPhantomY);
-        }
-
-        prevPhantomY = active.getY();
-        active.drawOnBoard(spaltenOffset, zeilenOffset, spaltenAbstand, canvas);
-        active.setPositionSimple(x, y);
-        active.setPhantom(false);
-        dropPhantom = false;
+        host.game.getActivePiece().drawOnBoard(spaltenOffset+150, zeilenOffset, spaltenAbstand, canvas);
     }
 
 
 
-    private void drawPopupText(Canvas canvas)
-    {
-        final int offset = 6;
-        final int diagonaloffset = 6;
 
-        String text = host.game.getPopupString();
-        popupTextPaint.setTextSize(host.game.getPopupSize());
-        popupTextPaint.setColor(host.getResources().getColor(color.black));
-        popupTextPaint.setAlpha(host.game.getPopupAlpha());
 
-        int left = columnOffset + (columns * squaresize / 2) - ((int) popupTextPaint.measureText(text) / 2); // Middle minus half text width
-        int top = canvas.getHeight() / 2;
-
-        canvas.drawText(text, offset + left, top, popupTextPaint); // Right
-        canvas.drawText(text, diagonaloffset + left, diagonaloffset + top, popupTextPaint); // Bottom right
-        canvas.drawText(text, left, offset + top, popupTextPaint); // Bottom
-        canvas.drawText(text, -diagonaloffset + left, diagonaloffset + top, popupTextPaint); // Bottom left
-        canvas.drawText(text, -offset + left, top, popupTextPaint); // Left
-        canvas.drawText(text, -diagonaloffset + left, -diagonaloffset + top, popupTextPaint); // Top left
-        canvas.drawText(text, left, -offset + top, popupTextPaint); // Top
-        canvas.drawText(text, diagonaloffset + left, -diagonaloffset + top, popupTextPaint); // Top right
-
-        popupTextPaint.setColor(host.game.getPopupColor());
-        popupTextPaint.setAlpha(host.game.getPopupAlpha());
-        canvas.drawText(text, left, top, popupTextPaint);
-    }
 
     void invalidatePhantom()
     {

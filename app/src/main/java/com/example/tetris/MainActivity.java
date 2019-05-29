@@ -12,8 +12,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button btn = (Button)findViewById(R.id.main_playgame_button);
-        Button btn2 = (Button)findViewById(R.id.main_statistics_button);
+        Button btn = (Button)findViewById(R.id.softdrop);
+        Button btn2 = (Button)findViewById(R.id.rotate);
         Button btn3 = (Button)findViewById(R.id.main_button_options);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

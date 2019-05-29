@@ -25,14 +25,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/main_playgame_button"
+        android:id="@+id/softdrop"
         android:layout_width="270dp"
         android:layout_height="56dp"
         android:layout_marginStart="74dp"
         android:layout_marginBottom="50dp"
         android:fontFamily="@font/goodtetris"
         android:text="Play Game"
-        app:layout_constraintBottom_toTopOf="@+id/main_multiplayer_button"
+        app:layout_constraintBottom_toTopOf="@+id/right"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +40,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/main_multiplayer_button"
+        android:id="@+id/right"
         android:layout_width="270dp"
         android:layout_height="56dp"
         android:layout_marginStart="74dp"
@@ -48,13 +48,13 @@
         android:layout_marginBottom="50dp"
         android:fontFamily="@font/goodtetris"
         android:text="Multiplayer"
-        app:layout_constraintBottom_toTopOf="@+id/main_statistics_button"
+        app:layout_constraintBottom_toTopOf="@+id/rotate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/main_statistics_button"
+        android:id="@+id/rotate"
         android:layout_width="270dp"
         android:layout_height="56dp"
         android:layout_marginStart="74dp"

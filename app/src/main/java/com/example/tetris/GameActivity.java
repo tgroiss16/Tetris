@@ -4,8 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import components.Controls;
 import components.GameState;
@@ -21,7 +23,7 @@ public class GameActivity extends AppCompatActivity {
 
     public Controls controls;
     public Display display;
-    @SuppressLint("ResourceType")
+    @SuppressLint({"ResourceType", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,37 @@ public class GameActivity extends AppCompatActivity {
 
         controls = new Controls(this);
         display = new Display(this);
+        findViewById(R.id.right).setOnClickListener(v -> controls.rightButtonPressed());
+
+        findViewById(R.id.left).setOnClickListener(v -> controls.leftButtonPressed());
+
+        findViewById(R.id.softdrop).setOnTouchListener((view, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                controls.downButtonPressed();
+                (findViewById(R.id.softdrop)).setPressed(true);
+            } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                controls.downButtonReleased();
+                (findViewById(R.id.softdrop)).setPressed(false);
+            }
+
+            return true;
+        });
+
+
+        ImageButton buttonRotateRight = findViewById(R.id.rotate);
+        if (buttonRotateRight != null) {
+            (findViewById(R.id.rotate)).setOnTouchListener((view, event) -> {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    controls.rotateRightPressed();
+                    (findViewById(R.id.rotate)).setPressed(true);
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    (findViewById(R.id.rotate)).setPressed(false);
+                }
+
+                return true;
+            });
+        }
+
         ((BlockBoardView) findViewById(R.id.blockBoardView2)).init();
         ((BlockBoardView) findViewById(R.id.blockBoardView2)).setHost(this);
 
