@@ -49,7 +49,7 @@ public class Display extends Component
         landscapeInitialized = false;
         paint = new Paint();
         rows = host.getResources().getInteger(R.integer.rows);
-        columns = host.getResources().getInteger(R.integer.columns);
+        columns = 9;
 
         squaresize = 1; // Unknown at this point
         prevTop = 1; // Unknown at this point
@@ -106,7 +106,7 @@ public class Display extends Component
                     .getInteger(R.integer.padding_columns) + 4 + columns)) / 2);
             }
 
-            gridRowBorder = rowOffset + squaresize * rows;
+            gridRowBorder = rowOffset + squaresize * rows ;
             gridColumnBorder = columnOffset + squaresize * columns;
             prevTop = rowOffset;
             prevBottom = rowOffset + 4 * squaresize;
@@ -154,9 +154,7 @@ public class Display extends Component
 
         drawGrid(columnOffset, rowOffset, gridColumnBorder, gridRowBorder, canvas);
 
-        drawPreview(prevLeft, prevTop, prevRight, prevBottom, canvas);
 
-        drawTextFillBox(canvas, fps);
 
         if (PreferenceManager.getDefaultSharedPreferences(host).getBoolean("pref_popup", true)) {
             drawPopupText(canvas);
@@ -168,73 +166,21 @@ public class Display extends Component
         paint.setColor(host.getResources().getColor(color.holo_blue_dark));
 
         for (int zeilePixel = 0; zeilePixel <= rows; zeilePixel++) {
-            canvas.drawLine(x, y + zeilePixel * squaresize, xBorder, y + zeilePixel * squaresize, paint);
+            canvas.drawLine(x + 150 , y + zeilePixel * squaresize, xBorder+150, y + zeilePixel * squaresize, paint);
         }
 
         for (int spaltePixel = 0; spaltePixel <= columns; spaltePixel++) {
-            canvas.drawLine(x + spaltePixel * squaresize, y, x + spaltePixel * squaresize, yBorder, paint);
+            canvas.drawLine(x + 150 + spaltePixel * squaresize, y, x +150+ spaltePixel * squaresize, yBorder, paint);
         }
 
         // Draw border
-        paint.setColor(host.getResources().getColor(color.background_light));
-        canvas.drawLine(x, y, x, yBorder, paint);
-        canvas.drawLine(x, y, xBorder, y, paint);
-        canvas.drawLine(xBorder, yBorder, xBorder, y, paint);
-        canvas.drawLine(xBorder, yBorder, x, yBorder, paint);
+        paint.setColor(host.getResources().getColor(color.black));
+        canvas.drawLine(x + 150, y, x+150, yBorder, paint);
+        canvas.drawLine(x+150, y, xBorder+150, y, paint);
+        canvas.drawLine(xBorder+150, yBorder, xBorder+150, y, paint);
+        canvas.drawLine(xBorder+150, yBorder, x+150, yBorder, paint);
     }
 
-    private void drawPreview(int left, int top, int right, int bottom, Canvas canvas)
-    {
-        // Piece
-        drawPreview(left, top, squaresize, canvas);
-
-        // Grid lines
-        paint.setColor(host.getResources().getColor(color.holo_blue_dark));
-
-        for (int zeilePixel = 0; zeilePixel <= 4; zeilePixel++) {
-            canvas.drawLine(left, top + zeilePixel * squaresize, right, top + zeilePixel * squaresize, paint);
-        }
-        for (int spaltePixel = 0; spaltePixel <= 4; spaltePixel++) {
-            canvas.drawLine(left + spaltePixel * squaresize, top, left + spaltePixel * squaresize, bottom, paint);
-        }
-
-        // Border
-        paint.setColor(host.getResources().getColor(color.background_light));
-        canvas.drawLine(left, top, right, top, paint);
-        canvas.drawLine(left, top, left, bottom, paint);
-        canvas.drawLine(right, bottom, right, top, paint);
-        canvas.drawLine(right, bottom, left, bottom, paint);
-    }
-
-    private void drawTextFillBox(Canvas canvas, int fps)
-    {
-        // Draw level text
-        canvas.drawText(host.getResources()
-            .getString(R.string.level), textLeft, textTop + textHeight, textPaint);
-        canvas.drawText(host.game.getLevelString(), textLeft, textTop + 2 * textHeight, textPaint);
-
-        // Draw score text
-        canvas.drawText(host.getResources()
-            .getString(R.string.score), textLeft, textTop + 3 * textHeight + textEmptySpacing, textPaint);
-        canvas.drawText(host.game.getScoreString(), textLeft, textTop + 4 * textHeight + textEmptySpacing, textPaint);
-
-        // Draw time text
-        canvas.drawText(host.getResources()
-            .getString(R.string.time), textLeft, textTop + 5 * textHeight + 2 * textEmptySpacing, textPaint);
-        canvas.drawText(host.game.getTimeString(), textLeft, textTop + 6 * textHeight + 2 * textEmptySpacing, textPaint);
-
-        // Draw APM text
-        canvas.drawText(host.getResources()
-            .getString(R.string.apm), textLeft, textTop + 7 * textHeight + 3 * textEmptySpacing, textPaint);
-        canvas.drawText(host.game.getAPMString(), textLeft, textTop + 8 * textHeight + 3 * textEmptySpacing, textPaint);
-
-        // Draw FPS text
-        if (PreferenceManager.getDefaultSharedPreferences(host).getBoolean("pref_show_fps", true)) {
-            canvas.drawText(host.getResources()
-                .getString(R.string.fps), textLeft, textTop + 9 * textHeight + 4 * textEmptySpacing, textPaint);
-            canvas.drawText("" + fps, textLeft, textTop + 10 * textHeight + 4 * textEmptySpacing, textPaint);
-        }
-    }
 
     private void drawActive(int spaltenOffset, int zeilenOffset, int spaltenAbstand, Canvas canvas)
     {
@@ -270,10 +216,7 @@ public class Display extends Component
         dropPhantom = false;
     }
 
-    private void drawPreview(int spaltenOffset, int zeilenOffset, int spaltenAbstand, Canvas canvas)
-    {
-        host.game.getPreviewPiece().drawOnPreview(spaltenOffset, zeilenOffset, spaltenAbstand, canvas);
-    }
+
 
     private void drawPopupText(Canvas canvas)
     {

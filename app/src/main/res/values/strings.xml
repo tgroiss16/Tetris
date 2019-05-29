@@ -13,9 +13,9 @@
     <color name="square_error">#FFFFFF</color>
     <integer name="columns">10</integer>
     <integer name="rows">18</integer>
-    <integer name="columns_offset">35</integer>
+    <integer name="columns_offset">0</integer>
     <integer name="rows_offset">0</integer>
-    <integer name="padding_columns">2</integer>
+    <integer name="padding_columns">0</integer>
 
     <integer name="phantom_alpha">93</integer>
     <integer name="text_alpha">192</integer>

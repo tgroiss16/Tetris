@@ -286,7 +286,7 @@ public class GameState extends Component
 
             default:
                 addScore = 0;
-                host.sound.dropSound();
+
 
                 if ((gameTime - popupTime) < (popupAttack + popupSustain)) {
                     popupTime = gameTime - (popupAttack + popupSustain);
