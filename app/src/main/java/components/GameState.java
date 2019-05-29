@@ -1,6 +1,7 @@
 package components;
 
 import android.R.color;
+import android.widget.TextView;
 
 import com.example.tetris.GameActivity;
 import com.example.tetris.R;
@@ -43,6 +44,7 @@ public class GameState extends Component
     private long spawnTime;
     private int stateOfTheGame;
     private long score;
+    private int lines;
     private int clearedLines;
     private int level;
     private int maxLevel;
@@ -113,6 +115,7 @@ public class GameState extends Component
         score = 0;
         songtime = 0;
         maxLevel = host.getResources().getInteger(R.integer.levels);
+        lines = 0;
 
         nextDropTime = host.getResources().getIntArray(R.array.intervals)[0];
 
@@ -254,21 +257,21 @@ public class GameState extends Component
             case 1:
                 addScore = singleLineScore;
                 multitetris = false;
-
+                lines +=1;
                 popupTime = gameTime;
                 break;
 
             case 2:
                 addScore = doubleLineScore;
                 multitetris = false;
-
+                lines +=2;
                 popupTime = gameTime;
                 break;
 
             case 3:
                 addScore = trippleLineScore;
                 multitetris = false;
-
+                lines +=3;
                 popupTime = gameTime;
                 break;
 
@@ -280,7 +283,7 @@ public class GameState extends Component
                 }
 
                 multitetris = true;
-
+                lines +=4;
                 popupTime = gameTime;
                 break;
 
@@ -305,6 +308,7 @@ public class GameState extends Component
         }
 
         score += addScore; // + tempBonus;
+        host.updateScore(score,lines,getLevel());
 
         if (addScore != 0) {
             popupString = "+" + addScore;

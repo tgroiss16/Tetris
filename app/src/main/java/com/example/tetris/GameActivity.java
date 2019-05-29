@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import components.Controls;
 import components.GameState;
@@ -35,6 +36,12 @@ public class GameActivity extends AppCompatActivity {
                 startActivity(new Intent(GameActivity.this, MainActivity.class));
             }
         });
+        TextView tlines = findViewById(R.id.playgame_txtlines);
+        tlines.setText(0+"");
+        TextView tscore = (TextView) findViewById(R.id.playgame_txtscore);
+        tscore.setText(0+"");
+        TextView tlevel = (TextView) findViewById(R.id.playgame_txtlevel);
+        tlevel.setText(0+"");
         game = (GameState) getLastCustomNonConfigurationInstance();
         game = GameState.getNewInstance(this);
         game.reconnect(this);
@@ -92,5 +99,23 @@ public class GameActivity extends AppCompatActivity {
     {
         startActivity(new Intent(GameActivity.this, MainActivity.class));
     }
+    public void updateScore(long score, int lines, int level)
+    {
+        runOnUiThread(new Runnable() {
 
+            @Override
+            public void run() {
+
+                TextView tlines = findViewById(R.id.playgame_txtlines);
+                tlines.setText(lines+"");
+                TextView tscore = (TextView) findViewById(R.id.playgame_txtscore);
+                tscore.setText(Integer.parseInt(""+score)+"");
+                TextView tlevel = (TextView) findViewById(R.id.playgame_txtlevel);
+                tlevel.setText(level+"");
+
+            }
+        });
+
+
+    }
 }
