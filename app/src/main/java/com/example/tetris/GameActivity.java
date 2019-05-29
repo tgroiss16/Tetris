@@ -35,6 +35,7 @@ public class GameActivity extends AppCompatActivity {
             mediaPlayer.setLooping(true);
         }
     }
+    //Hello, just testing if commiting works
 
 
     @Override
