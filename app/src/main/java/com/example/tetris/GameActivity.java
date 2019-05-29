@@ -45,7 +45,7 @@ public class GameActivity extends AppCompatActivity {
         game = (GameState) getLastCustomNonConfigurationInstance();
         game = GameState.getNewInstance(this);
         game.reconnect(this);
-
+        int i;
         controls = new Controls(this);
         display = new Display(this);
         findViewById(R.id.right).setOnClickListener(v -> controls.rightButtonPressed());
