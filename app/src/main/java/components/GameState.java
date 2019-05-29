@@ -254,21 +254,21 @@ public class GameState extends Component
             case 1:
                 addScore = singleLineScore;
                 multitetris = false;
-                host.sound.clearSound();
+
                 popupTime = gameTime;
                 break;
 
             case 2:
                 addScore = doubleLineScore;
                 multitetris = false;
-                host.sound.clearSound();
+
                 popupTime = gameTime;
                 break;
 
             case 3:
                 addScore = trippleLineScore;
                 multitetris = false;
-                host.sound.clearSound();
+
                 popupTime = gameTime;
                 break;
 
@@ -280,7 +280,7 @@ public class GameState extends Component
                 }
 
                 multitetris = true;
-                host.sound.tetrisSound();
+
                 popupTime = gameTime;
                 break;
 
@@ -349,7 +349,6 @@ public class GameState extends Component
         // Checking for Defeat
         if (!activePieces[activeIndex].setPosition(pieceStartX, 0, false, board)) {
             stateOfTheGame = STATE_FINISHED;
-            host.sound.gameOverSound();
             host.gameOver(score, getTimeString(), (int) ((float) actions * (60000.0f / gameTime)));
         }
     }

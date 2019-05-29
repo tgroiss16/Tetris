@@ -42,20 +42,9 @@ public class GameActivity extends AppCompatActivity {
         controls = new Controls(this);
         display = new Display(this);
         findViewById(R.id.right).setOnClickListener(v -> controls.rightButtonPressed());
-
         findViewById(R.id.left).setOnClickListener(v -> controls.leftButtonPressed());
+        findViewById(R.id.softdrop).setOnClickListener(v -> controls.downButtonPressed());
 
-        findViewById(R.id.softdrop).setOnTouchListener((view, event) -> {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                controls.downButtonPressed();
-                (findViewById(R.id.softdrop)).setPressed(true);
-            } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                controls.downButtonReleased();
-                (findViewById(R.id.softdrop)).setPressed(false);
-            }
-
-            return true;
-        });
 
 
         ImageButton buttonRotateRight = findViewById(R.id.rotate);
@@ -101,7 +90,7 @@ public class GameActivity extends AppCompatActivity {
     }
     public void gameOver(long score, String gameTime, int apm)
     {
-
+        startActivity(new Intent(GameActivity.this, MainActivity.class));
     }
 
 }

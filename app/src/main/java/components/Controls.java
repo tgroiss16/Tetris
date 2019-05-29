@@ -173,10 +173,10 @@ public class Controls extends Component
     {
         host.game.action();
         playerSoftDrop = true;
-        clearPlayerSoftDrop = false;
-        vibrateShort();
+
+
         host.game.setNextPlayerDropTime(host.game.getTime());
-        host.sound.buttonSound();
+
     }
 
     public void dropButtonPressed()
@@ -290,7 +290,7 @@ public class Controls extends Component
         } else if (playerSoftDrop) {
             // Initial Soft Drop
             playerSoftDrop = false;
-            continuousSoftDrop = true;
+            continuousSoftDrop = false;
 
             if (!active.drop(board)) {
                 // Piece finished
