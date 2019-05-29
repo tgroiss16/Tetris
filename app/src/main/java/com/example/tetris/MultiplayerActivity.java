@@ -25,6 +25,9 @@ public class MultiplayerActivity extends AppCompatActivity {
         });
 
 
+
+
+        //Nicht vergessen: Shared Preferences für win/los nicht vergessen.
     }
     @Override
     protected void onResume() {
