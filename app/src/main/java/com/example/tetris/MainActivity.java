@@ -7,19 +7,32 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
      MediaPlayer mediaPlayer ;
      public boolean musicboolean = OptionsActivity.musicboolean;
      public boolean turnboolean = OptionsActivity.turnboolean;
-     public final InputStream inputStream = getResources().openRawResource(R.raw.scores);
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        readscores();
 
 
 
@@ -75,7 +88,26 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public InputStream getInputStream() {
-        return inputStream;
+    public String readscores() {
+        String text = "";
+        File file = new File("scores.txt");
+        try{
+            System.out.println("1");
+            InputStream is = new FileInputStream(file);
+            System.out.println("2");
+
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            text = new String(buffer);
+        }catch(Throwable a){
+            a.printStackTrace();
+        }
+
+        System.out.println(text + "Hello");
+
+        return text;
+
     }
 }
