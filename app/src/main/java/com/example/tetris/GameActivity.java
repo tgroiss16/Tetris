@@ -10,7 +10,6 @@ import android.widget.Button;
 public class GameActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer;
     static public boolean musicboolean = OptionsActivity.musicboolean;
-    static public boolean soundboolean = OptionsActivity.soundboolean;
     static public boolean turnboolean = OptionsActivity.turnboolean;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +34,7 @@ public class GameActivity extends AppCompatActivity {
             mediaPlayer.setLooping(true);
         }
     }
-    //Hello, just testing if commiting works
+
 
 
     @Override

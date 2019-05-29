@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/main_playgame_button"
+        android:id="@+id/playgame_quickdrop_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="74dp"
@@ -44,7 +44,7 @@
         app:layout_constraintVertical_bias="0.317" />
 
     <Button
-        android:id="@+id/main_multiplayer_button"
+        android:id="@+id/playgame_moveright_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="74dp"
@@ -61,7 +61,7 @@
         app:layout_constraintVertical_bias="0.44" />
 
     <Button
-        android:id="@+id/main_statistics_button"
+        android:id="@+id/playgame_rotate_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="74dp"

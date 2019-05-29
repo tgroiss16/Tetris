@@ -10,7 +10,6 @@ import android.widget.Button;
 public class StatisticsActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer;
     public boolean musicboolean = OptionsActivity.musicboolean;
-    public boolean soundboolean = OptionsActivity.soundboolean;
     public boolean turnboolean = OptionsActivity.turnboolean;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +22,6 @@ public class StatisticsActivity extends AppCompatActivity {
                 startActivity(new Intent(StatisticsActivity.this, MainActivity.class));
             }
         });
-
-        System.out.println("Statistics");
-        System.out.println(musicboolean);
-        System.out.println(soundboolean);
-        System.out.println(turnboolean);
 
 
 

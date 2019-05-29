@@ -1,60 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/main_playgame_button"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="20dp"
+        android:id="@+id/playgame_quickdrop_button"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/arrow_down_float" />
 
     <ImageView
-        android:id="@+id/button2"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="20dp"
+        android:id="@+id/playgame_moveleft_button"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         android:rotation="90"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/main_playgame_button"
+        app:layout_constraintEnd_toStartOf="@+id/playgame_moveright_button"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/playgame_quickdrop_button"
         app:srcCompat="@android:drawable/arrow_down_float" />
 
     <ImageView
-        android:id="@+id/main_multiplayer_button"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
+        android:id="@+id/playgame_moveright_button"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
         android:rotation="-90"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/playgame_rotate_button"
+        app:layout_constraintStart_toEndOf="@+id/playgame_moveleft_button"
         app:srcCompat="@android:drawable/arrow_down_float" />
 
     <ImageView
-        android:id="@+id/main_statistics_button"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="20dp"
+        android:id="@+id/playgame_rotate_button"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/main_multiplayer_button"
         app:srcCompat="@android:drawable/ic_menu_rotate" />
 
     <Button
         android:id="@+id/playgame_quit_button"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="138dp"
         android:fontFamily="@font/goodtetris"
         android:text="Quit"
@@ -65,7 +67,7 @@
         android:id="@+id/playgame_textview1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="150dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/goodtetris"
         android:text="Level:"
@@ -89,13 +91,13 @@
         android:id="@+id/playgame_textview2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="250dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/goodtetris"
         android:text="Lines:"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playgame_txtlevel" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/playgame_txtlines"
@@ -113,13 +115,13 @@
         android:id="@+id/playgame_textview3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="350dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/goodtetris"
         android:text="Score:"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playgame_txtlines" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/playgame_txtscore"

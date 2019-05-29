@@ -1,20 +1,21 @@
 package com.example.tetris;
 
 import android.content.Intent;
-import android.graphics.Region;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.InputStream;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
      MediaPlayer mediaPlayer ;
      public boolean musicboolean = OptionsActivity.musicboolean;
-     public boolean soundboolean = OptionsActivity.soundboolean;
      public boolean turnboolean = OptionsActivity.turnboolean;
+     public final InputStream inputStream = getResources().openRawResource(R.raw.scores);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Button btn = (Button)findViewById(R.id.main_playgame_button);
-        Button btn1 = (Button) findViewById(R.id.main_multiplayer_button);
-        Button btn2 = (Button)findViewById(R.id.main_statistics_button);
+        Button btn = (Button)findViewById(R.id.playgame_quickdrop_button);
+        Button btn1 = (Button) findViewById(R.id.playgame_moveright_button);
+        Button btn2 = (Button)findViewById(R.id.playgame_rotate_button);
         Button btn3 = (Button)findViewById(R.id.main_button_options);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
     }
 
     @Override
@@ -71,5 +73,9 @@ public class MainActivity extends AppCompatActivity {
         if(mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
         }
+    }
+
+    public InputStream getInputStream() {
+        return inputStream;
     }
 }

@@ -12,19 +12,14 @@ import android.widget.ToggleButton;
 public class OptionsActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer;
     static public boolean musicboolean;
-    static public boolean soundboolean;
     static public boolean turnboolean;
-    private boolean curchanged;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
 
 
-        System.out.println("Options");
-        System.out.println(musicboolean);
-        System.out.println(soundboolean);
-        System.out.println(turnboolean);
+
 
         ToggleButton musicbutton = (ToggleButton)findViewById(R.id.options_music_button);
         if(musicboolean){
@@ -37,17 +32,6 @@ public class OptionsActivity extends AppCompatActivity {
             }
         });
 
-        ToggleButton soundbutton = (ToggleButton)findViewById(R.id.options_sound_button);
-        if(soundboolean){
-            soundbutton.setChecked(soundboolean);
-
-        }
-        soundbutton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setSoundboolean(isChecked);
-            }
-        });
 
         ToggleButton turnbutton = (ToggleButton)findViewById(R.id.options_turn_button);
         if(turnboolean){
@@ -97,10 +81,6 @@ public class OptionsActivity extends AppCompatActivity {
         return musicboolean;
     }
 
-    public boolean isSoundboolean() {
-        return soundboolean;
-    }
-
     public boolean isTurnboolean() {
         return turnboolean;
     }
@@ -109,9 +89,6 @@ public class OptionsActivity extends AppCompatActivity {
         OptionsActivity.musicboolean = musicboolean;
     }
 
-    public static void setSoundboolean(boolean soundboolean) {
-        OptionsActivity.soundboolean = soundboolean;
-    }
 
     public static void setTurnboolean(boolean turnboolean) {
         OptionsActivity.turnboolean = turnboolean;

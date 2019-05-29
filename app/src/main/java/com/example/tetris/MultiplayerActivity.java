@@ -10,7 +10,6 @@ import android.widget.Button;
 public class MultiplayerActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer;
     public boolean musicboolean = OptionsActivity.musicboolean;
-    public boolean soundboolean = OptionsActivity.soundboolean;
     public boolean turnboolean = OptionsActivity.turnboolean;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
