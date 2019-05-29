@@ -12,6 +12,14 @@ public class StatisticsActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer;
     public boolean musicboolean = OptionsActivity.musicboolean;
     public boolean turnboolean = OptionsActivity.turnboolean;
+
+    public int highscorequack = MainActivity.highscorequack;
+    public int losesinmpquack = MainActivity.losesinmpquack;
+    public int mostlinesclearedquack = MainActivity.mostlinesclearedquack;
+    public int totallinescleardquack = MainActivity.totallinescleardquack;
+    public int winsinmpquack = MainActivity.winsinmpquack;
+    public int totalpointsquack = MainActivity.totalpointsquack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,19 +31,20 @@ public class StatisticsActivity extends AppCompatActivity {
                 startActivity(new Intent(StatisticsActivity.this, MainActivity.class));
             }
         });
-        final TextView highscore = (TextView) findViewById(R.id.statistics_txthighscore);
-        final TextView losesinmp = (TextView) findViewById(R.id.statistics_txtlosesinmp);
-        final TextView mostlinescleared = (TextView) findViewById(R.id.statistics_txtmostlinescleared);
-        final TextView totallinescleared = (TextView) findViewById(R.id.statistics_txttotallinescleared);
-        final TextView winsinmp = (TextView) findViewById(R.id.statistics_txtwinsinmp);
-        final TextView points = (TextView) findViewById(R.id.statistics_txtpoints);
-        IOList io = new IOList();
-        highscore.setText(io.getHighscore());
-        losesinmp.setText(io.getLosesinmultiplayer());
-        mostlinescleared.setText(io.getMostlinescleared());
-        totallinescleared.setText(io.getTotallinescleard());
-        winsinmp.setText(io.getWinsinmultiplayer());
-        points.setText(io.getTotalpoints());
+        final TextView highscore = findViewById(R.id.statistics_txthighscore);
+        final TextView losesinmp = findViewById(R.id.statistics_txtlosesinmp);
+        final TextView mostlinescleared = findViewById(R.id.statistics_txtmostlinescleared);
+        final TextView totallinescleared = findViewById(R.id.statistics_txttotallinescleared);
+        final TextView winsinmp = findViewById(R.id.statistics_txtwinsinmp);
+        final TextView points = findViewById(R.id.statistics_txtpoints);
+
+        System.out.println(highscorequack+"Meh");
+        highscore.setText(highscorequack+"");
+        losesinmp.setText(losesinmpquack+"");
+        mostlinescleared.setText(mostlinesclearedquack+"");
+        totallinescleared.setText(totallinescleardquack+"");
+        winsinmp.setText(winsinmpquack+"");
+        points.setText(totalpointsquack+"");
 
 
 

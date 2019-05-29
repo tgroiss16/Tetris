@@ -1,6 +1,7 @@
 package com.example.tetris;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,7 +25,12 @@ public class MainActivity extends AppCompatActivity {
      public boolean musicboolean = OptionsActivity.musicboolean;
      public boolean turnboolean = OptionsActivity.turnboolean;
 
-
+     public static int highscorequack;
+     public static int losesinmpquack;
+     public static int mostlinesclearedquack;
+     public static int totallinescleardquack;
+     public static int winsinmpquack;
+     public static int totalpointsquack;
 
 
 
@@ -88,12 +94,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public String readscores() {
+    public String[] readscores() {
         String text = "";
         File file = new File("scores.txt");
+        AssetManager assetManager = getAssets();
         try{
             System.out.println("1");
-            InputStream is = new FileInputStream(file);
+            InputStream is = assetManager.open("scores.txt");
             System.out.println("2");
 
             int size = is.available();
@@ -106,8 +113,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         System.out.println(text + "Hello");
+        String[] s = text.split(",");
+        totallinescleardquack = Integer.parseInt(s[0]);
+        totalpointsquack = Integer.parseInt(s[1]);
+        highscorequack = Integer.parseInt(s[2]);
+        mostlinesclearedquack = Integer.parseInt(s[3]);
+        winsinmpquack = Integer.parseInt(s[4]);
+        losesinmpquack = Integer.parseInt(s[5]);
 
-        return text;
+        return s;
 
     }
 }
