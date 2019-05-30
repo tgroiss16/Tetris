@@ -63,7 +63,13 @@ public class GameActivity extends AppCompatActivity {
         if (buttonRotateRight != null) {
             (findViewById(R.id.rotate)).setOnTouchListener((view, event) -> {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    controls.rotateRightPressed();
+                    if(turnboolean) {
+                        controls.rotateRightPressed();
+                    }
+                    else {
+
+                        controls.rotateLeftPressed();
+                    }
                     (findViewById(R.id.rotate)).setPressed(true);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     (findViewById(R.id.rotate)).setPressed(false);
