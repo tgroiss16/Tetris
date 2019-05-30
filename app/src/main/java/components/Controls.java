@@ -104,10 +104,7 @@ public class Controls extends Component
         vibrator.vibrate(host.game.getMoveInterval() + vibrationDuration);
     }
 
-    private void cancelVibration()
-    {
-        vibrator.cancel();
-    }
+
 
     private void vibrateBottom()
     {
@@ -123,8 +120,7 @@ public class Controls extends Component
             return;
         }
 
-        vibrator.cancel();
-        vibrator.vibrate(new long[]{0, 5 + vibrationDuration, 30 + vibrationDuration, 20 + vibrationDuration}, -1);
+
     }
 
     private void vibrateShort()
@@ -143,7 +139,6 @@ public class Controls extends Component
 
         if ((host.game.getTime() - shortVibrationTime) > (host.getResources().getInteger(R.integer.short_vibration_interval) + vibrationDuration)) {
             shortVibrationTime = host.game.getTime();
-            vibrator.vibrate(vibrationDuration);
         }
     }
 
@@ -152,7 +147,7 @@ public class Controls extends Component
         leftRotation = true;
         host.game.action();
         vibrateShort();
-        host.sound.buttonSound();
+
     }
 
     public void rotateRightPressed()
@@ -160,7 +155,6 @@ public class Controls extends Component
         rightRotation = true;
         host.game.action();
         vibrateShort();
-        host.sound.buttonSound();
     }
 
     public void downButtonReleased()

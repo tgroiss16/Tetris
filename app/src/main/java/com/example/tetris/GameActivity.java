@@ -130,7 +130,7 @@ public class GameActivity extends AppCompatActivity {
         int totallinescleardquack = prefs.getInt("totallinescleared",0);
         int totalpointsquack = prefs.getInt("totalpoints",0);
         int mostlinesclearedquack = prefs.getInt("mostlinescleared",0);
-        SharedPreferences pres = this.getSharedPreferences("highscore", Context.MODE_PRIVATE);
+        SharedPreferences pres = this.getSharedPreferences("highscores", Context.MODE_PRIVATE);
         int top1 = pres.getInt("top1",0);
         int top2 = pres.getInt("top2",0);
         int top3 = pres.getInt("top3",0);
@@ -142,12 +142,12 @@ public class GameActivity extends AppCompatActivity {
                     top2 = top1;
                     top1 = score;
                 }
-                else{
+                else if (top1> score){
                     top3 = top2;
                     top2 = score;
                 }
             }
-            else{
+            else if(top2 > score){
                 top3 = score;
             }
         }
