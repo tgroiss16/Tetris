@@ -28,6 +28,7 @@ public class MultiplayerActivity extends AppCompatActivity {
 
 
         //Nicht vergessen: Shared Preferences für win/los nicht vergessen.
+        //Well, we are up again and ready to merge the project by hand. Continuing on Davids PC
     }
     @Override
     protected void onResume() {
