@@ -140,6 +140,11 @@ public class GameActivity extends AppCompatActivity {
         int top1 = pres.getInt("top1",0);
         int top2 = pres.getInt("top2",0);
         int top3 = pres.getInt("top3",0);
+        SharedPreferences pref = this.getSharedPreferences("recentscores", Context.MODE_PRIVATE);
+        SharedPreferences.Editor edi = pref.edit();
+        edi.putInt("score", score);
+        edi.putInt("lines", lines);
+        edi.commit();
 
         if(top3<=score){
             if(top2<=score){
@@ -184,7 +189,12 @@ public class GameActivity extends AppCompatActivity {
         editor.putInt("totalpoints", totalpointsquack);
         editor.putInt("mostlinescleared", mostlinesclearedquack);
         editor.commit();
-        startActivity(new Intent(GameActivity.this, MainActivity.class));
+
+
+
+        startActivity(new Intent(GameActivity.this, GameOverActivity.class));
+
+
     }
     public void updateScore(long score, int lines, int level)
     {
