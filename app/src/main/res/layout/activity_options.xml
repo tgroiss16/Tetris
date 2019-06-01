@@ -40,8 +40,8 @@
         android:layout_marginTop="250dp"
         android:fontFamily="@font/goodtetris"
         android:text="Music"
-        android:textOff="Music on"
-        android:textOn="Music off"
+        android:textOff="Music off"
+        android:textOn="Music on"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

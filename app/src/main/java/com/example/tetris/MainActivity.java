@@ -26,19 +26,17 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    MediaPlayer mediaPlayer;
+    public static MediaPlayer mediaPlayer;
     private String filename;
     public boolean musicboolean = OptionsActivity.musicboolean;
     public boolean turnboolean = OptionsActivity.turnboolean;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
 
         Button btn = (Button) findViewById(R.id.playgame_quickdrop_button);
         Button btn1 = (Button) findViewById(R.id.playgame_moveright_button);
@@ -71,22 +69,23 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
     @Override
     protected void onResume() {
         super.onResume();
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.tetristheme);
-        if (!mediaPlayer.isPlaying() && !musicboolean) {
+        if (!mediaPlayer.isPlaying() && !musicboolean)
+        {
             mediaPlayer.start();
             mediaPlayer.setLooping(true);
         }
     }
 
 
+
     @Override
     protected void onStop() {
         super.onStop();
-        if (mediaPlayer.isPlaying()) {
+        if(mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
         }
     }

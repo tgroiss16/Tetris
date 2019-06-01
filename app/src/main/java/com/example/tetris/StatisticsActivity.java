@@ -87,7 +87,7 @@ public class StatisticsActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         if(mediaPlayer.isPlaying()) {
-            mediaPlayer.stop();
+            mediaPlayer.pause();
         }
     }
 
