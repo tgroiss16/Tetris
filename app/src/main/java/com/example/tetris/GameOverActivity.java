@@ -3,6 +3,7 @@ package com.example.tetris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,6 +13,9 @@ import android.widget.TextView;
 public class GameOverActivity extends AppCompatActivity {
     int score = 0;
     int lines = 0;
+    MediaPlayer mediaPlayer = MainActivity.mediaPlayer;
+    static public boolean musicboolean = OptionsActivity.musicboolean;
+    static public boolean turnboolean = OptionsActivity.turnboolean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,4 +39,24 @@ public class GameOverActivity extends AppCompatActivity {
         TextView tscore =  findViewById(R.id.endgame_score);
         tscore.setText(""+score);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!mediaPlayer.isPlaying() && !musicboolean)
+        {
+            mediaPlayer.start();
+            mediaPlayer.setLooping(true);
+        }
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+        }
+    }
+
 }
