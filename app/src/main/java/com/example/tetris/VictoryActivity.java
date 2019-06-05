@@ -21,7 +21,7 @@ public class VictoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gameover);
+        setContentView(R.layout.activity_victory);
         Button btn = findViewById(R.id.endgame_button);
         SharedPreferences pref = this.getSharedPreferences("recentscores", Context.MODE_PRIVATE);
         score =  pref.getInt("score", 2);

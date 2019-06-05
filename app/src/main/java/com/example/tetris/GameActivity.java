@@ -222,13 +222,9 @@ public class GameActivity extends AppCompatActivity {
         editor.commit();
 
 
-        if(multiBoolean) {
+
             startActivity(new Intent(GameActivity.this, GameOverActivity.class));
 
-        }
-        else {
-            startActivity(new Intent(GameActivity.this, GameOverActivity.class));
-        }
 
     }
     public void updateScore(long score, int lines, int level)
