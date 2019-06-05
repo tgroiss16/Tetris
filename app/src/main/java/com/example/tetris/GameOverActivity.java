@@ -23,13 +23,6 @@ public class GameOverActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gameover);
         Button btn = findViewById(R.id.endgame_button);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(GameOverActivity.this, MainActivity.class));
-            }
-        });
-
         SharedPreferences pref = this.getSharedPreferences("recentscores", Context.MODE_PRIVATE);
         score =  pref.getInt("score", 2);
         lines =  pref.getInt("lines",3);
@@ -38,6 +31,14 @@ public class GameOverActivity extends AppCompatActivity {
         tlines.setText(lines+"");
         TextView tscore =  findViewById(R.id.endgame_score);
         tscore.setText(""+score);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(GameOverActivity.this, MainActivity.class));
+            }
+        });
+
+
     }
 
     @Override
