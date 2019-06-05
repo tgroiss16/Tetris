@@ -100,8 +100,6 @@ public class GameState extends Component
         trippleLineScore = host.getResources().getInteger(R.integer.tripple_line_score);
         multiTetrisScore = host.getResources().getInteger(R.integer.multi_tetris_score);
         quadLineScore = host.getResources().getInteger(R.integer.quad_line_score);
-        hardDropBonus = host.getResources().getInteger(R.integer.hard_drop_bonus);
-        softDropBonus = host.getResources().getInteger(R.integer.soft_drop_bonus);
         softDropDistance = 0;
         spawnDelay = host.getResources().getInteger(R.integer.spawn_delay);
         pieceStartX = host.getResources().getInteger(R.integer.piece_start_x);

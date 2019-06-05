@@ -29,7 +29,6 @@ public class Square
     {
         this.type = type;
         paint = new Paint();
-        phantomAlpha = context.getResources().getInteger(R.integer.phantom_alpha);
         squareSize = 0;
 
         switch (type) {

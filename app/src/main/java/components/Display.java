@@ -60,7 +60,7 @@ public class Display extends Component
         textPaint = new Paint();
         textRect = new Rect();
         textPaint.setColor(host.getResources().getColor(color.white));
-        textPaint.setAlpha(host.getResources().getInteger(R.integer.text_alpha));
+        textPaint.setAlpha(192);
         textPaint.setAntiAlias(true);
         popupTextPaint = new Paint();
         popupTextPaint.setColor(host.getResources().getColor(color.white));
