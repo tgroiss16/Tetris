@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import components.Controls;
 import components.GameState;
-import engine.Sound;
 import engine.WorkThread;
 import views.BlockBoardView;
 import components.Display;
@@ -23,7 +22,6 @@ import components.Display;
 public class GameActivity extends AppCompatActivity {
     private WorkThread mainThread;
     public GameState game;
-    public Sound sound;
     MediaPlayer mediaPlayer;
     static public boolean musicboolean = OptionsActivity.musicboolean;
     static public boolean turnboolean = OptionsActivity.turnboolean;
@@ -34,60 +32,30 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(multiBoolean = !true) {
             setContentView(R.layout.activity_playgame);
-        }
-        else
-        {
-            setContentView(R.layout.activity_multiplayer);
 
-        }
 
         Button btn = findViewById(R.id.playgame_quit_button);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(GameActivity.this, MainActivity.class));
-            }
-        });
-        if(multiBoolean = !true) {
+        btn.setOnClickListener(v -> startActivity(new Intent(GameActivity.this, MainActivity.class)));
             TextView tlines = findViewById(R.id.playgame_txtlines);
             tlines.setText(0 + "");
             TextView tscore = (TextView) findViewById(R.id.playgame_txtscore);
             tscore.setText(0 + "");
             TextView tlevel = (TextView) findViewById(R.id.playgame_txtlevel);
             tlevel.setText(0 + "");
-        }
-        else
-        {
-            TextView tlines = findViewById(R.id.multiplayer_txtlines);
-            tlines.setText(0 + "");
-            TextView tscore = (TextView) findViewById(R.id.multiplayer_txtscore);
-            tscore.setText(0 + "");
-            TextView tlevel = (TextView) findViewById(R.id.multiplayer_txtlevel);
-            tlevel.setText(0 + "");
 
-        }
+
         game = (GameState) getLastCustomNonConfigurationInstance();
         game = GameState.getNewInstance(this);
         game.reconnect(this);
         int i;
         controls = new Controls(this);
         display = new Display(this);
-        if(multiBoolean = !true) {
 
 
             findViewById(R.id.right).setOnClickListener(v -> controls.rightButtonPressed());
             findViewById(R.id.left).setOnClickListener(v -> controls.leftButtonPressed());
             findViewById(R.id.softdrop).setOnClickListener(v -> controls.downButtonPressed());
-        }
-        else
-        {
-            findViewById(R.id.multiplayer_moveright_button).setOnClickListener(v -> controls.rightButtonPressed());
-            findViewById(R.id.multiplayer_moveleft_button).setOnClickListener(v -> controls.leftButtonPressed());
-            findViewById(R.id.multiplayer_quickdrop_button).setOnClickListener(v -> controls.downButtonPressed());
-
-        }
 
 
         ImageButton buttonRotateRight = findViewById(R.id.rotate);

@@ -120,17 +120,13 @@ public class GameState extends Component
         nextDropTime = host.getResources().getIntArray(R.array.intervals)[0];
 
         playerDropInterval = (int) (1000.0f / host.getResources()
-            .getInteger(R.integer.soft_drop_speed)); // 142, at 7 lines per second
-
+            .getInteger(R.integer.soft_drop_speed));
         playerMoveInterval = (int) (1000.0f / host.getResources()
-            .getInteger(R.integer.move_speed)); // 250, at 4 squares per second
-
+            .getInteger(R.integer.move_speed));
         nextPlayerDropTime = (int) (1000.0f / host.getResources()
-            .getInteger(R.integer.soft_drop_speed)); // 142, at 7 lines per second
-
+            .getInteger(R.integer.soft_drop_speed));
         nextPlayerMoveTime = (int) (1000.0f / host.getResources()
-            .getInteger(R.integer.move_speed)); // 250, at 4 squares per second
-
+            .getInteger(R.integer.move_speed)); // Movement for the cycle
         gameTime = 0;
         pieceGenerator = new PieceGenerator();
 
@@ -145,14 +141,6 @@ public class GameState extends Component
         activePieces[4] = new SPiece(host);
         activePieces[5] = new TPiece(host);
         activePieces[6] = new ZPiece(host);
-
-        previewPieces[0] = new IPiece(host);
-        previewPieces[1] = new JPiece(host);
-        previewPieces[2] = new LPiece(host);
-        previewPieces[3] = new OPiece(host);
-        previewPieces[4] = new SPiece(host);
-        previewPieces[5] = new TPiece(host);
-        previewPieces[6] = new ZPiece(host);
 
         // Starting pieces
         activeIndex = pieceGenerator.next();
@@ -343,7 +331,6 @@ public class GameState extends Component
         }
 
         scheduleSpawn = false;
-        host.display.invalidatePhantom();
         activePieces[activeIndex].setActive(true);
         setNextDropTime(gameTime + dropIntervals[Math.min(level, maxLevel)]);
         setNextPlayerDropTime(gameTime);

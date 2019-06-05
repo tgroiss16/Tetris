@@ -43,8 +43,6 @@ public class Display extends Component
     {
         super(gameActivity);
 
-        invalidatePhantom();
-        prevPhantomY = 0;
         landscapeInitialized = false;
         paint = new Paint();
         rows = host.getResources().getInteger(R.integer.rows);
@@ -177,13 +175,4 @@ public class Display extends Component
         host.game.getActivePiece().drawOnBoard(spaltenOffset+150, zeilenOffset, spaltenAbstand, canvas);
     }
 
-
-
-
-
-
-    void invalidatePhantom()
-    {
-        dropPhantom = true;
-    }
 }

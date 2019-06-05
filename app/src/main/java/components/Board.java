@@ -164,7 +164,6 @@ public class Board extends Component {
 
     public void cycle(long time)
     {
-        // Begin at bottom line
         if (topRow == null) {
             throw new RuntimeException("BlockBoard was not initialized!");
         }
@@ -211,16 +210,13 @@ public class Board extends Component {
         valid = false;
         topRow = row;
         currentIndex++;
-        host.display.invalidatePhantom();
-    }
 
+    }
     public void interruptClearAnimation()
     {
-        // Begin at bottom line
         if (topRow == null) {
             throw new RuntimeException("BlockBoard was not initialized!");
         }
-
         Row interator = topRow.getAbove();
 
         for (int i = 0; i < height; i++) {
@@ -236,8 +232,6 @@ public class Board extends Component {
                 return;
             }
         }
-
-        host.display.invalidatePhantom();
     }
 
     public void invalidate()

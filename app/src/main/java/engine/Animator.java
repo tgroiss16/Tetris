@@ -15,12 +15,12 @@ public class Animator
     private static final int ANIMATION_STAGE_IDLE = 0;
     private static final int ANIMATION_STAGE_FLASH = 1;
 
-    // Config
+    // Flash Intervall shorter maybe
     private long flashInterval;
     private long flashFinishTime;
     private int squareSize;
 
-    // State
+    // WWhen does what flash
     private long startTime;
     private int stage;
     private boolean drawEnable;
