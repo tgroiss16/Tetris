@@ -7,7 +7,9 @@ import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.ParcelUuid;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -16,19 +18,12 @@ import android.os.Handler;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.UUID;
-import android.app.Activity;
-import android.bluetooth.BluetoothSocket;
-import android.os.Handler;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
 
 import java.util.Set;
+import java.util.UUID;
 
 import static com.example.tetris.R.layout.activity_bluetooth;
 
@@ -38,81 +33,101 @@ public class MultiplayerActivity extends AppCompatActivity {
     static public String mac;
     public boolean musicboolean = OptionsActivity.musicboolean;
     public boolean turnboolean = OptionsActivity.turnboolean;
-    final int handlerState = 0;                        //used to identify handler message
+    final int handlerState = 0;
     private BluetoothAdapter btAdapter = null;
     private BluetoothAdapter mBtAdapter = null;
     private BluetoothSocket btSocket = null;
     private boolean ready = false;
-
-    private ConnectedThread mConnectedThread;
+    private static final UUID MY_UUID = UUID.fromString("0000110E-0000-1000-8000-00805F9B34FB");
     @SuppressLint("HandlerLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(activity_bluetooth);
-        //Nicht vergessen: Shared Preferences für win/los nicht vergessen.
-        //Well, we are up again and ready to merge the project by hand. Continuing on Davids PC
-        bluetoothIn = new Handler() {
-            public void handleMessage(android.os.Message msg) {
-                if (msg.what == handlerState) {
-                    String readMessage = (String) msg.obj;
-                    if(readMessage.equals("0")) {
-                        TextView v = findViewById(R.id.bluetooth_ready);
-                        v.setText("Opponent Ready, want to start game?");
-                    }
-                }
-            }
-        };
-        btAdapter = BluetoothAdapter.getDefaultAdapter();
-        Button b = findViewById(R.id.bluetooth_start);
-        b.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                mConnectedThread.write("0");    // Send "0" via Bluetooth
-                ready=true;
-            }
-        });
+        try {
+            init();
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+        try {
+            write("16");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         }
     @Override
     protected void onResume() {
         super.onResume();
-        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.tetristheme);
-        if (!mediaPlayer.isPlaying() && !musicboolean)
-        {
-            mediaPlayer.start();
-            mediaPlayer.setLooping(true);
-        }
-        mBtAdapter = BluetoothAdapter.getDefaultAdapter();
-        Set<BluetoothDevice> pairedDevices = mBtAdapter.getBondedDevices();
 
-        for (BluetoothDevice device : pairedDevices) {
-            mac =device.getName();
-        }
-        Intent intent = getIntent();
-
-        //Get the MAC address from the DeviceListActivty via EXTRA
-
-
-        //create device and set the MAC address
-        BluetoothDevice device = btAdapter.getRemoteDevice(mac);
-
-        try
-        {
-            btSocket.connect();
-        } catch (IOException e) {
-            try
-            {
-                btSocket.close();
-            } catch (IOException e2)
-            {
-                //insert code to deal with this
-            }
-        }
-        mConnectedThread = new ConnectedThread(btSocket);
-        mConnectedThread.start();
 
     }
+    private OutputStream outputStream;
+    private InputStream inStream;
 
+    private void init() throws IOException {
+        BluetoothAdapter blueAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (blueAdapter != null) {
+            if (blueAdapter.isEnabled()) {
+                Set<BluetoothDevice> bondedDevices = blueAdapter.getBondedDevices();
+
+                if(bondedDevices.size() > 0) {
+                    Object[] devices = (Object []) bondedDevices.toArray();
+                    BluetoothDevice device = (BluetoothDevice) devices[0];
+                    ParcelUuid[] uuids = device.getUuids();
+                    BluetoothSocket socket = device.createRfcommSocketToServiceRecord(uuids[0].getUuid());
+
+                    try {
+                        socket.connect();
+                        Log.e("","Connected");
+                    } catch (IOException e) {
+                        Log.e("",e.getMessage());
+                        try {
+                            Log.e("","trying fallback...");
+
+                            socket =(BluetoothSocket) device.getClass().getMethod("createRfcommSocket", new Class[] {int.class}).invoke(device,1);
+                            socket.connect();
+                            String a = String.valueOf(socket.isConnected());
+                            Log.e("",a);
+                            Log.e("","Connected");
+                        }
+                        catch (Exception e2) {
+                            Log.e("", "Couldn't establish Bluetooth connection!");
+                        }
+                    }
+
+                    outputStream = socket.getOutputStream();
+                    inStream = socket.getInputStream();
+
+                }
+
+
+            } else {
+                Log.e("error", "Bluetooth is disabled.");
+            }
+        }
+    }
+
+    public void write(String s) throws IOException {
+        outputStream.write(s.getBytes());
+    }
+
+    public void run() {
+        final int BUFFER_SIZE = 1024;
+        byte[] buffer = new byte[BUFFER_SIZE];
+        int bytes = 0;
+        int b = BUFFER_SIZE;
+
+        while (true) {
+            try {
+                bytes = inStream.read(buffer, bytes, BUFFER_SIZE - bytes);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     @Override
     protected void onStop() {
@@ -123,52 +138,5 @@ public class MultiplayerActivity extends AppCompatActivity {
         }
     }
 
-    private class ConnectedThread extends Thread {
-        private final InputStream mmInStream;
-        private final OutputStream mmOutStream;
 
-        //creation of the connect thread
-        public ConnectedThread(BluetoothSocket socket) {
-            InputStream tmpIn = null;
-            OutputStream tmpOut = null;
-
-            try {
-                //Create I/O streams for connection
-                tmpIn = socket.getInputStream();
-                tmpOut = socket.getOutputStream();
-            } catch (IOException e) { }
-
-            mmInStream = tmpIn;
-            mmOutStream = tmpOut;
-        }
-
-        public void run() {
-            byte[] buffer = new byte[256];
-            int bytes;
-
-            // Keep looping to listen for received messages
-            while (true) {
-                try {
-                    bytes = mmInStream.read(buffer);            //read bytes from input buffer
-                    String readMessage = new String(buffer, 0, bytes);
-                    // Send the obtained bytes to the UI Activity via handler
-                    bluetoothIn.obtainMessage(handlerState, bytes, -1, readMessage).sendToTarget();
-                } catch (IOException e) {
-                    break;
-                }
-            }
-        }
-        //write method
-        public void write(String input) {
-            byte[] msgBuffer = input.getBytes();           //converts entered String into bytes
-            try {
-                mmOutStream.write(msgBuffer);                //write bytes over BT connection via outstream
-            } catch (IOException e) {
-                //if you cannot write, close the application
-                Toast.makeText(getBaseContext(), "Connection Failure", Toast.LENGTH_LONG).show();
-                finish();
-
-            }
-        }
-    }
 }
