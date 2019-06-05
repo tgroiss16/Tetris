@@ -27,13 +27,22 @@ public class GameActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer;
     static public boolean musicboolean = OptionsActivity.musicboolean;
     static public boolean turnboolean = OptionsActivity.turnboolean;
+    public boolean multiBoolean = MultiplayerActivity.multiBoolean;
     public Controls controls;
     public Display display;
     @SuppressLint({"ResourceType", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_playgame);
+        if(multiBoolean = !true) {
+            setContentView(R.layout.activity_playgame);
+        }
+        else
+        {
+            setContentView(R.layout.activity_multiplayer);
+
+        }
+
         Button btn = findViewById(R.id.playgame_quit_button);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,22 +50,44 @@ public class GameActivity extends AppCompatActivity {
                 startActivity(new Intent(GameActivity.this, MainActivity.class));
             }
         });
-        TextView tlines = findViewById(R.id.playgame_txtlines);
-        tlines.setText(0+"");
-        TextView tscore = (TextView) findViewById(R.id.playgame_txtscore);
-        tscore.setText(0+"");
-        TextView tlevel = (TextView) findViewById(R.id.playgame_txtlevel);
-        tlevel.setText(0+"");
+        if(multiBoolean = !true) {
+            TextView tlines = findViewById(R.id.playgame_txtlines);
+            tlines.setText(0 + "");
+            TextView tscore = (TextView) findViewById(R.id.playgame_txtscore);
+            tscore.setText(0 + "");
+            TextView tlevel = (TextView) findViewById(R.id.playgame_txtlevel);
+            tlevel.setText(0 + "");
+        }
+        else
+        {
+            TextView tlines = findViewById(R.id.multiplayer_txtlines);
+            tlines.setText(0 + "");
+            TextView tscore = (TextView) findViewById(R.id.multiplayer_txtscore);
+            tscore.setText(0 + "");
+            TextView tlevel = (TextView) findViewById(R.id.multiplayer_txtlevel);
+            tlevel.setText(0 + "");
+
+        }
         game = (GameState) getLastCustomNonConfigurationInstance();
         game = GameState.getNewInstance(this);
         game.reconnect(this);
         int i;
         controls = new Controls(this);
         display = new Display(this);
-        findViewById(R.id.right).setOnClickListener(v -> controls.rightButtonPressed());
-        findViewById(R.id.left).setOnClickListener(v -> controls.leftButtonPressed());
-        findViewById(R.id.softdrop).setOnClickListener(v -> controls.downButtonPressed());
+        if(multiBoolean = !true) {
 
+
+            findViewById(R.id.right).setOnClickListener(v -> controls.rightButtonPressed());
+            findViewById(R.id.left).setOnClickListener(v -> controls.leftButtonPressed());
+            findViewById(R.id.softdrop).setOnClickListener(v -> controls.downButtonPressed());
+        }
+        else
+        {
+            findViewById(R.id.multiplayer_moveright_button).setOnClickListener(v -> controls.rightButtonPressed());
+            findViewById(R.id.multiplayer_moveleft_button).setOnClickListener(v -> controls.leftButtonPressed());
+            findViewById(R.id.multiplayer_quickdrop_button).setOnClickListener(v -> controls.downButtonPressed());
+
+        }
 
 
         ImageButton buttonRotateRight = findViewById(R.id.rotate);
@@ -191,9 +222,13 @@ public class GameActivity extends AppCompatActivity {
         editor.commit();
 
 
+        if(multiBoolean) {
+            startActivity(new Intent(GameActivity.this, GameOverActivity.class));
 
-        startActivity(new Intent(GameActivity.this, GameOverActivity.class));
-
+        }
+        else {
+            startActivity(new Intent(GameActivity.this, GameOverActivity.class));
+        }
 
     }
     public void updateScore(long score, int lines, int level)

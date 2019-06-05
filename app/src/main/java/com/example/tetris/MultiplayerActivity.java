@@ -33,6 +33,7 @@ public class MultiplayerActivity extends AppCompatActivity {
     static public String mac;
     public boolean musicboolean = OptionsActivity.musicboolean;
     public boolean turnboolean = OptionsActivity.turnboolean;
+    public static boolean multiBoolean = true;
     final int handlerState = 0;
     private BluetoothAdapter btAdapter = null;
     private BluetoothAdapter mBtAdapter = null;
@@ -45,6 +46,13 @@ public class MultiplayerActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(activity_bluetooth);
+        Button btn = (Button) findViewById(R.id.bluetooth_start);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MultiplayerActivity.this, GameActivity.class));
+            }
+        });
         try {
             init();
         } catch (IOException e) {
@@ -61,6 +69,12 @@ public class MultiplayerActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.tetristheme);
+        if (!mediaPlayer.isPlaying() && !musicboolean)
+        {
+            mediaPlayer.start();
+            mediaPlayer.setLooping(true);
+        }
 
 
     }
