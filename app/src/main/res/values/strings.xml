@@ -16,9 +16,7 @@
     <integer name="columns_offset">0</integer>
     <integer name="rows_offset">0</integer>
     <integer name="padding_columns">0</integer>
-
-    <integer name="phantom_alpha">93</integer>
-    <integer name="text_alpha">192</integer>
+    
 
     <integer name="piece_start_x">0</integer>
 
@@ -29,12 +27,6 @@
     <integer name="tripple_line_score">500</integer>
     <integer name="quad_line_score">800</integer>
     <integer name="multi_tetris_score">1200</integer>
-    <integer name="soft_drop_bonus">1</integer> <!-- points per dropped square -->
-    <integer name="hard_drop_bonus">2</integer> <!-- points per dropped square -->
-
-    <integer name="short_vibration_interval">100</integer>
-
-    <integer name="audio_streams">16</integer>
 
     <integer name="popup_attack">125</integer>
     <integer name="popup_sustain">1050</integer>
@@ -146,24 +138,10 @@
     <string name="score">Score</string>
     <string name="level">Level</string>
     <string name="time">Time</string>
-    <string name="apm">APM</string>
     <string name="fps">FPS</string>
     <color name="black_overlay">#66000000</color>
     <color name="dark_blue_green">#FF408080</color>
     <color name="yellow">#ffffff30</color>
-    <color name="transparent">#00000000</color>
     <color name="holo_grey">#FF4D4D4D</color>
-    <string name="game_over">Game Over</string>
-
-    <string name="anonymous">Anonymous</string>
-    <string name="score_label">Score:</string>
-    <string name="time_label">Time:</string>
-    <string name="apm_label">Total APM:</string>
-    <string name="back">Back</string>
-    <!-- Key used to access the player's name, returned as an Intent from GameActivity upon completion (gameover). -->
-    <string name="playername_key" translatable="false">org.blockinger2.game.activities.playername</string>
-
-    <!-- Key used to access the player's score, returned as an Intent from GameActivity upon completion (gameover). -->
-    <string name="score_key" translatable="false">org.blockinger2.game.activities.score</string>
 
 </resources>
